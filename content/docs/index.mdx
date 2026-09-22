@@ -1,13 +1,160 @@
 ---
-title: Hello World
-description: Your first document
+title: Learning Log & Notes
+description: Tracking my journey from fundamental to modern full-stack development.
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+## Welcome
 
-## What is Next?
+This documentation is my personal technical notebook. Rather than story fragmented notes across different apps, I use this space to log what I build, the concept I learn, and the errors I solve along the way.
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
-</Cards>
+---
+
+## Roadmap
+
+Here is what I'm tackling in order:
+
+- **HTML & Markup Basics** *(Current Focus)*
+- **Modern CSS & Layouts** 
+- **JavaScript Fundamentals & DOM**
+- **React & Next.js Architecture**
+- **APIs, Databases & Deployment**
+
+---
+
+**HTML (HyperText Markup Language)** is the foundational skeleton of the World Wide Web. Rather than handling visuals or logic, HTML provides structural meaning to content. Through an ecosystem of opening and closing tags, attributes, and nested elements, it turns raw text, media, and data into an organized Document Object Model (DOM) that browsers, search engine indexers, and accessibility tools (screen readers) can parse and render predictably.
+
+---
+
+### The Anatomy of an HTML Document
+
+Every valid HTML document relies on a root blueprint:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Title</title>
+  </head>
+  <body>
+    <!-- User-visible content lives here -->
+  </body>
+</html>
+
+```
+
+* `<!DOCTYPE html>`: Tells the browser to render using modern HTML5 standard mode.
+* `<html>`: Root node of the entire document tree; includes language configuration (`lang="en"`).
+* `<head>`: Container for document metadata, character encodings, viewport settings, titles, and stylesheet imports—none of which are visible on the page.
+* `<body>`: Contains all rendered content visible to end users.
+
+---
+
+### What is Semantic HTML?
+
+A **semantic** HTML tag explicitly declares what kind of content it holds to both the browser and the developer (e.g., `<article>`, `<header>`, `<nav>`).
+
+In contrast, **non-semantic** tags like `<div>` (generic container) and `<span>` (generic inline text) provide zero context about their content.
+
+#### Why Semantic Markup Matters
+
+1. **Accessibility (a11y):** Screen readers use semantic landmarks so visually impaired users can skip directly to navigation, article bodies, or footers.
+2. **Search Engine Optimization (SEO):** Search crawlers (like Google) weigh headings and semantic sections to identify primary topics and index pages accurately.
+3. **Maintainability:** Codebases are significantly easier to read, debug, and maintain without layers of nested `<div>` "wrapper soup".
+
+---
+
+### Complete Reference: Core Semantic Elements
+
+#### 1. Page Landmark Elements
+
+These define the high-level structural zones of a page.
+
+| Tag | Purpose & Semantic Role |
+| --- | --- |
+| `<header>` | Introductory content, logos, site branding, or top-level navigation wrappers. |
+| `<nav>` | Dedicated section containing primary navigational links for the site or document. |
+| `<main>` | The dominant, unique content of the document. Must only appear once per page. |
+| `<article>` | A self-contained, independently distributable piece of content (e.g., blog post, news item, forum thread). |
+| `<section>` | A standalone thematic grouping of content, typically introduced with its own heading. |
+| `<aside>` | Content tangentially related to the surrounding material (e.g., sidebars, callout boxes, related links). |
+| `<footer>` | Closing region containing author details, copyright notices, terms links, or secondary navigation. |
+
+#### 2. Content & Text Structure Elements
+
+These structure written content logically and establish clear reading hierarchies.
+
+| Tag | Purpose & Semantic Role |
+| --- | --- |
+| `<h1>` – `<h6>` | Headings ranked in importance from 1 (highest) to 6 (lowest). `<h1>` represents the page's primary topic. |
+| `<p>` | Defines a block paragraph of running text. |
+| `<blockquote>` | Indicates a section quoted from another external source. |
+| `<pre>` | Represents preformatted text where spaces, line breaks, and formatting are preserved verbatim. |
+| `<code>` | Marks inline technical code fragments, variables, or terminal commands. |
+| `<figure>` | Encapsulates self-contained media (images, diagrams, code listings) referenced in the main text. |
+| `<figcaption>` | Provides an explicit semantic caption or legend directly tied to its parent `<figure>`. |
+| `<time>` | Represents a machine-readable date, time, or duration (often paired with the `datetime` attribute). |
+
+#### 3. Lists & Navigation Elements
+
+These structure sequential, ranked, or grouped items.
+
+| Tag | Purpose & Semantic Role |
+| --- | --- |
+| `<ul>` | Unordered list; represents a collection of items where sequence does not change meaning (renders bullets). |
+| `<ol>` | Ordered list; represents sequential or numbered steps where order is critical. |
+| `<li>` | List item element; must reside directly inside a `<ul>` or `<ol>`. |
+| `<dl>` | Description list; pairs terms with definitions. |
+| `<dt>` | Description term; the item being defined inside a `<dl>`. |
+| `<dd>` | Description detail; the explanation or definition corresponding to a preceding `<dt>`. |
+
+#### 4. Media & External Content Elements
+
+These embed rich assets directly into the DOM tree.
+
+| Tag | Purpose & Semantic Role |
+| --- | --- |
+| `<img>` | Embeds a raster or vector image. Always requires `src` and descriptive `alt` attributes. (Void tag). |
+| `<audio>` | Embeds sound content, playback controls, and audio tracks. |
+| `<video>` | Embeds video media with support for subtitles, captions, and playback controls. |
+| `<source>` | Specifies alternate media files or formats inside `<audio>`, `<video>`, or `<picture>`. (Void tag). |
+| `<picture>` | Provides alternate image sources depending on screen resolution or viewport width. |
+
+#### 5. User Input & Form Elements
+
+These collect and validate structured user input.
+
+| Tag | Purpose & Semantic Role |
+| --- | --- |
+| `<form>` | Represents a document section containing interactive controls for submitting data. |
+| `<label>` | Associates an accessible descriptive caption with a specific form control (paired via `for="id"`). |
+| `<input>` | Accepts variable user data (e.g., text, email, password, checkbox, radio). (Void tag). |
+| `<textarea>` | Multiline plain-text editing control. |
+| `<button>` | Clickable action element; triggers form submissions, modal dialogs, or scripts. |
+| `<select>` | Dropdown control offering a menu of selectable choices. |
+| `<option>` | Represents a distinct item inside a `<select>` dropdown menu. |
+| `<fieldset>` | Groups related form controls and labels together within a web form. |
+| `<legend>` | Represents a caption or title for the contents of its parent `<fieldset>`. |
+
+#### 6. Tabular Data Elements
+
+These organize two-dimensional relational data across columns and rows.
+
+| Tag | Purpose & Semantic Role |
+| --- | --- |
+| `<table>` | Represents multidimensional tabular data. |
+| `<caption>` | Provides an accessible title or summary for the table. |
+| `<thead>` | Groups the header row(s) containing column definitions. |
+| `<tbody>` | Wraps the primary data rows of the table. |
+| `<tfoot>` | Wraps summary or total rows at the bottom of the table. |
+| `<tr>` | Table row container. |
+| `<th>` | Table header cell; defines the label for an entire row or column (uses `scope="col"` or `scope="row"`). |
+| `<td>` | Table data cell; contains the specific data point. |
+
+---
+
+### Non-Semantic Helpers (Use Sparingly)
+
+* **`<div>` (Division):** A generic block-level container with no inherent meaning. Use solely for CSS styling hooks, layout grids, or JavaScript wrappers when no semantic tag fits.
+* **`<span>`:** A generic inline container with no inherent meaning. Use to isolate a segment of text for targeted styling or script handling.
