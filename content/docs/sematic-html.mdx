@@ -1,0 +1,145 @@
+---
+title: Complete Sematic HTML Reference
+description: Core landmarks, text hierarchy, tables, forms, and accessibility rules.
+---
+import {Callout} from 'fumadocs-ui/components/callout';
+
+## What is Semantic HTML?
+
+Semantic HTML means using HTML elements that clearly describe their meaning and role to both the browser and the developer. 
+
+Instead of wrapping everything in generic `<div>` and `<span>` tags, semantic elements make the structure readable, search-engine friendly (SEO), and accessible to screen readers.
+
+<Callout type="warn" title="Key Accessibility Rule">
+  Always maintain a logical heading hierarchy. Use `<h1>` for the primary title, followed by `<h2>`, `<h3>`, etc. Never skip levels (like going directly from `<h2>` to `<h4>`) just to change font size—use CSS for visual styling instead.
+</Callout>
+
+### 1. Document Landmarks (Structure & Layout)
+
+These define the major structural areas of a web page and help screen readers navigate directly to specific sections.
+
+* `<header>`: Introductory content, brand logos, headings, or top-level navigation wrappers for a page or section.
+* `<nav>`: A dedicated section containing navigation links (menus, tables of contents, breadcrumbs).
+* `<main>`: The unique, primary content of the document. Can only appear once per page outside `<header>`, `<footer>`, `<aside>`, etc.
+* `<article>`: A self-contained, independent composition that makes sense on its own (e.g., a blog post, forum reply, product card, news story).
+* `<section>`: A thematic grouping of content, typically beginning with its own heading (`<h2>`–`<h6>`).
+* `<aside>`: Tangential or related content not critical to the main flow (e.g., sidebars, callout boxes, related articles).
+* `<footer>`: Closing section containing copyright, author details, contact links, or sitemaps.
+
+---
+
+### 2. Headings & Document Hierarchy
+
+Establishes the logical reading outline of your page.
+
+* `<h1>`: The primary heading of the entire page (best practice: exactly one per page).
+* `<h2>` to `<h6>`: Subheadings in decreasing order of importance. **Never skip levels** (e.g., jumping from `<h2>` straight to `<h4>`), as this breaks accessibility trees for screen readers.
+* `<hgroup>`: Groups a heading (`<h1>`–`<h6>`) with secondary subheadings or taglines (often combined with `<p>`).
+
+---
+
+### 3. Text & Content Semantics
+
+Gives structural meaning to words and blocks of text rather than just visual styling.
+
+* `<p>`: Paragraph of regular body text.
+* `<blockquote>`: A section quoted from another source.
+* `<q>`: An inline short quotation (automatically adds quotation marks in many browsers).
+* `<cite>`: References the title of a creative work (book, movie, paper, song).
+* `<strong>`: Serious importance, urgency, or warning (renders bold by default).
+* `<em>`: Verbal emphasis that changes the meaning of a sentence (renders italic by default).
+* `<mark>`: Text highlighted or marked for reference purposes.
+* `<small>`: Fine print, legal terms, disclaimers, or copyright text.
+* `<time>`: Machine-readable date, time, or duration (paired with `datetime="..."`).
+* `<address>`: Contact information for the author/owner of the document or article.
+* `<abbr>`: An abbreviation or acronym; optional `title` attribute provides the expansion.
+* `<dfn>`: The term being defined in a definition or explanation.
+* `<s>`: Content that is no longer accurate or relevant (renders with a strikethrough).
+* `<del>`: Text that has been deleted or removed in an edit.
+* `<ins>`: Text that has been inserted into a document in an edit.
+* `<sub>`: Subscript text (e.g., $H_2O$).
+* `<sup>`: Superscript text (e.g., $E = mc^2$ or footnotes).
+
+---
+
+### 4. Technical & Code Content
+
+* `<code>`: A fragment of computer code or a terminal command.
+* `<pre>`: Preformatted text; spaces and line breaks are rendered exactly as typed.
+* `<kbd>`: User keyboard input (e.g., `<kbd>Ctrl</kbd> + <kbd>C</kbd>`).
+* `<samp>`: Sample output produced by a computer program or script.
+* `<var>`: A variable in a mathematical expression or programming context.
+
+---
+
+### 5. Media & Figures
+
+* `<figure>`: Self-contained visual or programmatic content (images, diagrams, code listings).
+* `<figcaption>`: An accessible caption or legend directly associated with its parent `<figure>`.
+* `<picture>`: A responsive container allowing different image versions for different screen sizes.
+* `<audio>`: Sound content with optional playback controls.
+* `<video>`: Video content with optional subtitles and playback controls.
+* `<track>`: Text tracks (subtitles, captions) for `<video>` and `<audio>`.
+
+---
+
+### 6. Lists
+
+* `<ul>`: Unordered list (bulleted); used when sequence does not matter.
+* `<ol>`: Ordered list (numbered); used when sequential order is critical.
+* `<li>`: List item inside an ordered or unordered list.
+* `<dl>`: Description list; groups pairs of terms and descriptions.
+* `<dt>`: Description term (the word being explained).
+* `<dd>`: Description details (the definition of the term).
+
+---
+
+### 7. Interactive & Disclosure
+
+* `<details>`: A disclosure widget the user can toggle open or closed (native accordion).
+* `<summary>`: The clickable label/heading for a `<details>` element.
+* `<dialog>`: A native popup dialog box or modal window.
+
+---
+
+### 8. Forms & User Input
+
+* `<form>`: Interactive container for collecting and submitting user input.
+* `<label>`: Accessible label explicitly tied to an input using `for="id"`.
+* `<button>`: Clickable action trigger (submit, reset, or custom script).
+* `<fieldset>`: Groups related form controls together (e.g., payment details).
+* `<legend>`: The caption/title for a `<fieldset>`.
+* `<select>`: Dropdown selector menu.
+* `<optgroup>`: Groups related options within a `<select>` dropdown.
+* `<option>`: An item inside a `<select>` dropdown.
+* `<datalist>`: Provides a list of pre-defined autocomplete options for an `<input>`.
+* `<textarea>`: Multi-line text entry field.
+* `<output>`: Container where the calculation or result of a user action is displayed.
+* `<progress>`: Progress bar indicating the completion percentage of a task.
+* `<meter>`: Gauge displaying a measurement within a known range (e.g., disk usage, temperature).
+
+---
+
+### 9. Tabular Data
+
+* `<table>`: Two-dimensional data grid.
+* `<caption>`: Accessible title or description for the table.
+* `<thead>`: Groups table header rows.
+* `<tbody>`: Groups the main table body rows.
+* `<tfoot>`: Groups summary/total rows at the bottom of the table.
+* `<tr>`: Table row.
+* `<th>`: Header cell (use `scope="col"` or `scope="row"` for accessibility).
+* `<td>`: Data cell holding the actual value.
+
+---
+
+### Presentational vs. Semantic (Quick Cheatsheet)
+
+| Do Not Use (Deprecated / Presentational) | Use Instead (Semantic or Modern CSS) |
+| --- | --- |
+| `<center>` | CSS `text-align: center;` or Flexbox/Grid |
+| `<font>` | CSS `font-family`, `font-size`, `color` |
+| `<big>` | CSS `font-size: larger;` |
+| `<b>` (purely for bold look) | `<strong>` (if important) or CSS `font-weight: bold;` |
+| `<i>` (purely for slanted look) | `<em>` (if emphasized) or CSS `font-style: italic;` |
+| `<u>` (purely for underline) | CSS `text-decoration: underline;` |

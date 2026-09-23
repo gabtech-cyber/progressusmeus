@@ -1,0 +1,523 @@
+---
+title: Semantic HTML Tags 
+description: A complete, practical reference of semantic HTML tags categorized by function, showing each element with an exact code example.
+
+---
+
+### 1. Document Landmarks (Structure & Layout)
+
+These tags define the major architectural regions of a web page.
+
+#### `<header>`
+
+Introductory content, site title, or top-level navigation.
+
+```html
+<header>
+  <h1>Computing Notes</h1>
+  <p>Engineering log and web fundamentals</p>
+</header>
+
+```
+
+#### `<nav>`
+
+Major navigation menus or link groups.
+
+```html
+<nav aria-label="Main menu">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/docs">Documentation</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</nav>
+
+```
+
+#### `<main>`
+
+The primary, unique content of the page (only one per document).
+
+```html
+<main>
+  <h2>Core Web Architecture</h2>
+  <p>The web is built on three core layers: HTML, CSS, and JavaScript.</p>
+</main>
+
+```
+
+#### `<article>`
+
+A complete, self-contained piece of content that makes sense on its own.
+
+```html
+<article>
+  <h2>Understanding the DOM</h2>
+  <p>Published on September 23, 2026</p>
+  <p>The Document Object Model represents the page as a nodes tree...</p>
+</article>
+
+```
+
+#### `<section>`
+
+A thematic grouping of related content with a heading.
+
+```html
+<section>
+  <h2>Milestone 01: Markup Foundations</h2>
+  <p>Focusing on accessible structures and semantic trees.</p>
+</section>
+
+```
+
+#### `<aside>`
+
+Secondary or tangential content (sidebars, tips, related reading).
+
+```html
+<aside>
+  <h3>Quick Tip</h3>
+  <p>Always pair <code>&lt;label&gt;</code> with <code>&lt;input&gt;</code> using the <code>for</code> attribute.</p>
+</aside>
+
+```
+
+#### `<footer>`
+
+Copyright, metadata, author bio, or footer navigation.
+
+```html
+<footer>
+  <p>&copy; 2026 Gabriel Munteanu. All rights reserved.</p>
+  <a href="/privacy">Privacy Policy</a>
+</footer>
+
+```
+
+---
+
+### 2. Headings & Text Hierarchy
+
+#### `<h1>` to `<h6>`
+
+Hierarchical headings. Never skip levels (e.g., jumping from `<h2>` to `<h4>`).
+
+```html
+<h1>Web Architecture</h1>
+<h2>Frontend Foundations</h2>
+<h3>HyperText Markup Language</h3>
+
+```
+
+#### `<hgroup>`
+
+Groups a heading with its accompanying subheading or tagline.
+
+```html
+<hgroup>
+  <h1>Full-Stack Roadmap</h1>
+  <p>From static markup to distributed production systems</p>
+</hgroup>
+
+```
+
+#### `<p>`
+
+Standard body paragraph.
+
+```html
+<p>Semantic tags convey meaning to both machines and developers.</p>
+
+```
+
+#### `<blockquote>`
+
+Extended quote from an outside source.
+
+```html
+<blockquote cite="https://www.w3.org/">
+  <p>The power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect.</p>
+</blockquote>
+
+```
+
+#### `<q>`
+
+Short, inline quotation (the browser inserts quotes automatically).
+
+```html
+<p>Tim Berners-Lee stated that the web should be <q>collaborative and universal</q>.</p>
+
+```
+
+#### `<cite>`
+
+Cites the title of a creative work (book, paper, song, movie).
+
+```html
+<p>Refer to <cite>Designing with Web Standards</cite> for further reading.</p>
+
+```
+
+#### `<address>`
+
+Contact information for the document or article author.
+
+```html
+<address>
+  Contact the author at <a href="mailto:contact@example.com">contact@example.com</a>.<br>
+  Adelaide, South Australia
+</address>
+
+```
+
+---
+
+### 3. Inline Text Semantics
+
+#### `<strong>`
+
+High importance, urgency, or critical warning.
+
+```html
+<p><strong>Warning:</strong> Always close open elements to avoid rendering issues.</p>
+
+```
+
+#### `<em>`
+
+Verbal stress or emphasis that alters sentence meaning.
+
+```html
+<p>You must run <em>build</em> before deploying to production.</p>
+
+```
+
+#### `<mark>`
+
+Text highlighted for relevance or reference.
+
+```html
+<p>Search query matched: <mark>semantic elements</mark> found in chapter 1.</p>
+
+```
+
+#### `<small>`
+
+Side comments, disclaimers, legal warnings, or copyright notices.
+
+```html
+<small>All specifications are subject to revision without notice.</small>
+
+```
+
+#### `<time>`
+
+Machine-readable dates, times, and durations.
+
+```html
+<p>Class begins at <time datetime="2026-09-24T09:00">9:00 AM on September 24</time>.</p>
+
+```
+
+#### `<abbr>`
+
+An acronym or abbreviation with its expanded explanation.
+
+```html
+<p><abbr title="HyperText Markup Language">HTML</abbr> is the standard markup language for web pages.</p>
+
+```
+
+#### `<dfn>`
+
+The specific term being defined within an explanatory sentence.
+
+```html
+<p>The <dfn>DOM</dfn> is an API for HTML and XML documents.</p>
+
+```
+
+#### `<s>`, `<del>`, and `<ins>`
+
+Tracking changes and outdated information.
+
+```html
+<p>Tickets are <del>$50</del> <ins>$35</ins> today only!</p>
+<p><s>Offer valid until yesterday.</s></p>
+
+```
+
+#### `<sub>` and `<sup>`
+
+Subscripts and superscripts.
+
+```html
+<p>Water formula: H<sub>2</sub>O</p>
+<p>Einstein equation: E = mc<sup>2</sup></p>
+
+```
+
+---
+
+### 4. Technical, Computer & Code Semantics
+
+#### `<code>`
+
+Inline snippets of programming code or shell commands.
+
+```html
+<p>Run <code>npm run dev</code> to boot the local server.</p>
+
+```
+
+#### `<pre>`
+
+Preformatted block preserving whitespace and indentation.
+
+```html
+<pre><code>function greet() {
+  console.log("Hello, World!");
+}</code></pre>
+
+```
+
+#### `<kbd>`
+
+Keyboard inputs or shortcuts entered by the user.
+
+```html
+<p>Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> to inspect the element.</p>
+
+```
+
+#### `<samp>`
+
+Output returned by a program, command, or script.
+
+```html
+<p>Terminal output: <samp>Server listening on port 3000</samp></p>
+
+```
+
+#### `<var>`
+
+A variable in a formula or coding context.
+
+```html
+<p>Calculate total cost as <var>price</var> &times; <var>quantity</var>.</p>
+
+```
+
+---
+
+### 5. Media & Figure Semantics
+
+#### `<figure>` and `<figcaption>`
+
+Self-contained visual content with an explicit semantic caption.
+
+```html
+<figure>
+  <img src="/images/dom-tree.png" alt="Tree diagram showing html, head, and body nodes">
+  <figcaption>Figure 1: The hierarchical DOM tree structure.</figcaption>
+</figure>
+
+```
+
+#### `<picture>` and `<source>`
+
+Responsive image sets based on viewport width or screen density.
+
+```html
+<picture>
+  <source media="(min-width: 800px)" srcset="/images/hero-large.jpg">
+  <source media="(min-width: 400px)" srcset="/images/hero-medium.jpg">
+  <img src="/images/hero-small.jpg" alt="Responsive developer workspace">
+</picture>
+
+```
+
+#### `<audio>` and `<track>`
+
+Sound playback with optional subtitles/captions.
+
+```html
+<audio controls>
+  <source src="/audio/lesson-01.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+```
+
+#### `<video>`
+
+Video streaming with custom attributes and captions.
+
+```html
+<video controls width="640" poster="/images/poster.jpg">
+  <source src="/video/intro.mp4" type="video/mp4">
+  <track src="/subtitles/en.vtt" kind="subtitles" srclang="en" label="English">
+  Your browser does not support the video tag.
+</video>
+
+```
+
+---
+
+### 6. Lists & Data Grouping
+
+#### `<ul>` and `<li>`
+
+Unordered list (bulleted; order does not change meaning).
+
+```html
+<ul>
+  <li>HTML structure</li>
+  <li>CSS presentation</li>
+  <li>JavaScript behavior</li>
+</ul>
+
+```
+
+#### `<ol>` and `<li>`
+
+Ordered list (numbered; chronological sequence matters).
+
+```html
+<ol>
+  <li>Write standard HTML markup</li>
+  <li>Style layout with CSS</li>
+  <li>Add interactivity with JavaScript</li>
+</ol>
+
+```
+
+#### `<dl>`, `<dt>`, and `<dd>`
+
+Description list pairing keys/terms with values/descriptions.
+
+```html
+<dl>
+  <dt>HTML</dt>
+  <dd>Defines page structure and content meaning.</dd>
+  <dt>CSS</dt>
+  <dd>Defines typography, layout, colors, and presentation.</dd>
+</dl>
+
+```
+
+---
+
+### 7. Interactive & Native UI Elements
+
+#### `<details>` and `<summary>`
+
+Native accordion widget that toggles content open and closed without JavaScript.
+
+```html
+<details>
+  <summary>What is the difference between &lt;b&gt; and &lt;strong&gt;?</summary>
+  <p><code>&lt;b&gt;</code> is purely stylistic bold, while <code>&lt;strong&gt;</code> conveys real importance to assistive technologies.</p>
+</details>
+
+```
+
+#### `<dialog>`
+
+Native modal window or dialog box.
+
+```html
+<dialog id="help-modal">
+  <p>Need help with your code?</p>
+  <form method="dialog">
+    <button>Close</button>
+  </form>
+</dialog>
+
+```
+
+---
+
+### 8. Forms & Inputs
+
+Semantic form controls make validation and accessibility work automatically.
+
+```html
+<form action="/submit" method="POST">
+  <fieldset>
+    <legend>Account Registration</legend>
+
+    <!-- Paired label and input -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <!-- Accessible Dropdown -->
+    <label for="track">Focus Track:</label>
+    <select id="track" name="track">
+      <optgroup label="Frontend">
+        <option value="html">HTML & Semantics</option>
+        <option value="css">CSS & Layouts</option>
+      </optgroup>
+      <optgroup label="Backend">
+        <option value="db">Databases</option>
+      </optgroup>
+    </select>
+
+    <!-- Multi-line text field -->
+    <label for="bio">Bio:</label>
+    <textarea id="bio" name="bio" rows="4"></textarea>
+
+    <!-- Measurement and feedback indicators -->
+    <label for="progress-bar">Profile Completion:</label>
+    <progress id="progress-bar" value="70" max="100">70%</progress>
+
+    <label for="disk-usage">Storage Remaining:</label>
+    <meter id="disk-usage" min="0" max="100" value="25" low="30" high="90">25 GB</meter>
+
+    <!-- Action Trigger -->
+    <button type="submit">Create Account</button>
+  </fieldset>
+</form>
+
+```
+
+---
+
+### 9. Tabular Data
+
+Tables present multi-variable relational data across labeled columns and rows.
+
+```html
+<table>
+  <caption>Weekly Study Schedule</caption>
+  <thead>
+    <tr>
+      <th scope="col">Day</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Monday</th>
+      <td>Semantic HTML Elements</td>
+      <td>2 hours</td>
+    </tr>
+    <tr>
+      <th scope="row">Wednesday</th>
+      <td>Forms and Accessible Landmarks</td>
+      <td>2 hours</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="row" colspan="2">Total Study Time</th>
+      <td>4 hours</td>
+    </tr>
+  </tfoot>
+</table>
+
+```
