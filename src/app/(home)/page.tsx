@@ -16,7 +16,7 @@ export default function HomePage() {
         <div className="mt-6">
           <Link
             href="/docs"
-            className="inline-block bg-white text-black font-semibold text-sm px-5 py-2.5 rounded hover:bg-zinc-200 transition"
+            className="inline-block bg-blue text-white font-semibold text-sm px-5 py-2.5 rounded hover:bg-zinc-200 transition"
           >
             Open Notes →
           </Link>
@@ -26,8 +26,8 @@ export default function HomePage() {
       {/* 2. THE 5 ROADMAP STEPS */}
       <div className="space-y-3">
         {/* Step 1: Active */}
-        <section className="p-4 rounded-lg border border-amber-500 bg-zinc-900/60">
-          <span className="text-xs font-mono text-amber-400 font-semibold uppercase">
+        <section className="p-4 rounded-lg border border-blue-500 bg-zinc-900/60">
+          <span className="text-xs font-mono text-red-400 font-semibold uppercase">
             Current Focus
           </span>
           <h2 className="text-base font-semibold text-white mt-1">
@@ -93,8 +93,8 @@ export default function HomePage() {
 
       {/* 3. FOOTER */}
       <footer className="mt-12 text-center text-xs text-zinc-600">
-        <p>Built with Next.js & Fumadocs</p>
         <p>Progressus Meus</p>
+        <legend>2026</legend>
       </footer>
     </main>
   );
