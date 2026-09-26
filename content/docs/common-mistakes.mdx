@@ -1,0 +1,173 @@
+---
+title: Common Mistakes in Attribute Associations
+description: Attributes often fail silently—the browser won't crash or throw a red error screen, but screen readers will break, forms will fail to submit, and links or security boundaries will degrade.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+Attributes often fail silently—the browser won't crash or throw a red error screen, but screen readers will break, forms will fail to submit, and links or security boundaries will degrade.
+ 
+---
+
+### 1. The `<label>` Mismatches (`for` vs. `id` vs. `name`)
+
+This is the single most frequent form mistake on the web.
+
+#### Mistake A: Pointing `for` to the `name` instead of the `id`
+
+The `for` attribute **only** looks for an element's `id`. It completely ignores `name`.
+
+```html
+<!-- ❌ BROKEN: Screen readers won't announce the label; clicking text won't focus input -->
+<label for="email">Email Address</label>
+<input type="email" name="email" />
+
+<!-- ✅ FIXED: Add id="email" matching the label's for="email" -->
+<label for="email">Email Address</label>
+<input type="email" id="email" name="email" />
+
+```
+
+#### Mistake B: Duplicate `id`s on Radio / Checkbox Groups
+
+Radios share a **`name`** to group them, but each must have a **unique `id**`. Reusing the `id` breaks label binding.
+
+```html
+<!-- ❌ BROKEN: Clicking either label toggles only the first radio button -->
+<input type="radio" id="tier" name="tier" value="free" />
+<label for="tier">Free</label>
+
+<input type="radio" id="tier" name="tier" value="pro" />
+<label for="tier">Pro</label>
+
+<!-- ✅ FIXED: Shared name, distinct IDs, matching labels -->
+<input type="radio" id="tier-free" name="tier" value="free" />
+<label for="tier-free">Free</label>
+
+<input type="radio" id="tier-pro" name="tier" value="pro" />
+<label for="tier-pro">Pro</label>
+
+```
+
+---
+
+### 2. Missing `name` on Form Controls
+
+A field will render and accept text without a `name` attribute, but **its data will never reach the backend**.
+
+```html
+<!-- ❌ BROKEN: User types an answer, submits the form, but the server receives nothing -->
+<input type="text" id="username" />
+
+<!-- ✅ FIXED: 'id' connects the label/CSS; 'name' sends the payload key to the server -->
+<input type="text" id="username" name="username" />
+
+```
+
+* **`id`** is for the client (CSS, JavaScript, `<label for="...">`).
+* **`name`** is for the server (`POST /api/register -> payload: { username: "..." }`).
+
+---
+
+### 3. Missing or Vague Image Alt Attributes (`alt` vs. `title`)
+
+#### Mistake A: Leaving off `alt` entirely
+
+If you omit `alt`, a screen reader will read the raw file URL (`"/assets/uploads/img_92819_final.png"`).
+
+```html
+<!-- ❌ BROKEN -->
+<img src="/logo.png" />
+
+<!-- ✅ FIXED: If informative, describe it; if purely decorative, use an empty alt="" -->
+<img src="/logo.png" alt="Company Logo" />
+<img src="/decorative-blob.svg" alt="" aria-hidden="true" />
+
+```
+
+#### Mistake B: Using `title` instead of `alt`
+
+`title` only creates a desktop hover tooltip. Screen readers and search engine bots rely primarily on `alt`.
+
+---
+
+### 4. Link & Anchor Attributes (`target="_blank"` without Security)
+
+Opening links in a new tab without security attributes exposes your application to performance drops and reverse-tabnabbing vulnerabilities.
+
+```html
+<!-- ❌ VULNERABLE: The target page gets window.opener access to your page -->
+<a href="https://external-site.com" target="_blank">External Link</a>
+
+<!-- ✅ FIXED: Always pair target="_blank" with rel="noopener noreferrer" -->
+<a href="https://external-site.com" target="_blank" rel="noopener noreferrer">
+  External Link
+</a>
+
+```
+
+---
+
+### 5. ARIA and Native HTML Attribute Duplication
+
+Using both a native semantic attribute and an ARIA equivalent can confuse assistive technologies.
+
+```html
+<!-- ❌ REDUNDANT & ERROR-PRONE -->
+<input type="text" hidden aria-hidden="true" required aria-required="true" />
+
+<!-- ✅ FIXED: Let native HTML handle its own semantics -->
+<input type="text" hidden required />
+
+```
+
+Only use `aria-*` when native HTML has no built-in equivalent (like `aria-expanded` or `aria-controls` on custom drawers).
+
+---
+
+### 6. Boolean Attribute Misunderstandings
+
+In HTML, boolean attributes evaluate to `true` simply by existing on the tag—even if you explicitly type `false`.
+
+```html
+<!-- ❌ SURPRISE: The button is STILL disabled! -->
+<button disabled="false">Click Me</button>
+
+<!-- ✅ FIXED: To disable, add the attribute. To enable, remove it completely -->
+<button disabled>Cannot Click</button>
+<button>Can Click</button>
+
+```
+
+---
+
+### 7. Form Controls Located Outside `<form>` Without the `form` Attribute
+
+Placing a submit button or input outside the `<form>` wrapper causes it to do nothing when clicked, unless you bind it using the `form` attribute.
+
+```html
+<!-- ❌ BROKEN: Button sits outside <form> and will not trigger submission -->
+<form id="contact-form" action="/send" method="POST">
+  <input type="text" name="message" id="message" />
+</form>
+<button type="submit">Submit</button>
+
+<!-- ✅ FIXED: Connect the detached button to the form's id using form="..." -->
+<form id="contact-form" action="/send" method="POST">
+  <input type="text" name="message" id="message" />
+</form>
+<button type="submit" form="contact-form">Submit</button>
+
+```
+
+---
+
+### Quick Diagnostic Table
+
+| What Went Wrong | Cause | How to Fix |
+| --- | --- | --- |
+| Clicking `<label>` doesn't focus input | `for` points to `name` or misspelled `id` | Match `label.for` directly to `input.id`. |
+| Submitted form is missing field values | Input lacks a `name` attribute | Add `name="field_key"` to every input. |
+| All radio options toggle the first one | Duplicate `id`s across the group | Give each radio a unique `id`, share the `name`. |
+| Element is disabled despite `disabled="false"` | Boolean attributes evaluate by presence | Remove the attribute entirely to enable. |
+| External link slows down or compromises tab | Missing `rel` on `target="_blank"` | Always add `rel="noopener noreferrer"`. |

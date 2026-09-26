@@ -1,0 +1,147 @@
+---
+title: HTML Attributes Deep Dive
+description: Global identifiers, accessibility attributes, data binding, and element-specific properties.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+## What are HTML Attributes?
+
+Attributes extend HTML elements by adding metadata, behavior, identity, or configuration parameters. They always appear in the opening tag and follow a standard name-value syntax:
+
+```html
+<element attribute_name="attribute_value">Content</element>
+
+```
+
+Boolean attributes do not require a value—their presence alone triggers the behavior (e.g., `<input required disabled>` is equivalent to `required="true"`).
+
+---
+
+## 1. Global Attributes
+
+Global attributes can be used on **any** valid HTML element across the document.
+
+| Attribute | Purpose & Usage | Example |
+| --- | --- | --- |
+| `id` | Unique identifier across the entire document. Must be singular per page. Used for CSS anchors and JS selectors. | `<section id="projects">` |
+| `class` | Non-unique identifier for grouping elements for CSS styling and DOM querying. | `<div class="card active">` |
+| `title` | Advisory information rendered as a native tooltip on hover. | `<abbr title="Cascading Style Sheets">CSS</abbr>` |
+| `hidden` | Boolean flag that hides the element visually and from assistive tech (equivalent to `display: none`). | `<p hidden>Temporary secret</p>` |
+| `tabindex` | Controls keyboard navigation order (`0` makes it focusable, `-1` excludes it from sequential tabbing). | `<div tabindex="0">Focusable</div>` |
+| `lang` | Declares the primary human language of an element's text. | `<blockquote lang="fr">...</blockquote>` |
+| `draggable` | Boolean determining whether an element can be dragged natively. | `<img draggable="false" ...>` |
+| `contenteditable` | Allows the user to edit the inner text directly inside the browser. | `<div contenteditable="true">` |
+
+---
+
+## 2. Element-Specific Core Attributes
+
+Certain attributes only function when attached to specific HTML elements.
+
+### Links (`<a>`)
+
+* `href`: The destination URL (relative, absolute, or anchor fragment like `#section-1`).
+* `target`: Specifies where to open the link (`_blank` opens a new tab).
+* `rel`: Relationship between documents. Always pair `target="_blank"` with `rel="noopener noreferrer"` for security.
+* `download`: Prompts the browser to download the linked file instead of navigating to it.
+
+```html
+<a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download="Gabriel-Resume.pdf">
+  Download Resume
+</a>
+
+```
+
+### Media (`<img>`, `<video>`, `<audio>`)
+
+* `src`: Path to the media file.
+* `alt`: Descriptive text for accessibility and screen readers when images fail to load.
+* `width` / `height`: Explicit pixel dimensions to prevent Layout Shifts (CLS) while downloading.
+* `loading`: Performance control (`loading="lazy"` defers download until the element nears the viewport).
+
+```html
+<img 
+  src="/images/architecture.png" 
+  alt="System architecture diagram" 
+  width="800" 
+  height="450" 
+  loading="lazy" 
+/>
+
+```
+
+### Forms (`<input>`, `<form>`, `<textarea>`)
+
+* `type`: Defines input behavior (`text`, `email`, `password`, `number`, `checkbox`).
+* `name`: The payload key transmitted to the backend on submission.
+* `value`: Initial or selected value of the control.
+* `placeholder`: Temporary hint text (never replace `<label>` with placeholder).
+* `required`: Prevents submission if the field is empty.
+* `disabled`: Greys out the element and omits it from form submission.
+* `readonly`: Displays data and submits it, but prevents user modification.
+* `pattern`: Regular expression (Regex) used for native browser validation.
+* `min` / `max` / `step`: Threshold bounds for numeric and date inputs.
+
+---
+
+## 3. Custom Data Attributes (`data-*`)
+
+Custom data attributes allow embedding private application data directly into HTML markup without dirtying classes or IDs.
+
+```html title="Embedding Product Metadata"
+<button 
+  type="button"
+  class="btn-checkout"
+  data-product-id="prod_9921"
+  data-category="software"
+  data-in-stock="true"
+>
+  Add to Cart
+</button>
+
+```
+
+### Reading Custom Attributes in JavaScript:
+
+```javascript
+const button = document.querySelector('.btn-checkout');
+
+// Access via the dataset API:
+console.log(button.dataset.productId); // "prod_9921"
+console.log(button.dataset.inStock);   // "true"
+
+```
+
+---
+
+## 4. Accessibility Attributes (`aria-*` & `role`)
+
+ARIA (Accessible Rich Internet Applications) attributes provide extra context to assistive tech when native HTML semantics fall short.
+
+* `aria-label`: An invisible text label announced by screen readers when no visible text is present (e.g., icon-only buttons).
+* `aria-hidden="true"`: Hides purely decorative elements (icons, graphics) from screen readers.
+* `aria-expanded="true|false"`: Indicates whether an accordion or dropdown menu is open.
+* `aria-controls="id"`: Identifies the element whose contents are managed by the current control.
+* `role`: Overrides or establishes an explicit widget role (e.g., `role="alert"` for real-time error toasts).
+
+```html title="Accessible Icon Button & Dropdown"
+<!-- Icon-only button with accessible voice description -->
+<button aria-label="Close modal dialog">
+  <svg aria-hidden="true">...</svg>
+</button>
+
+<!-- Navigation toggle state -->
+<button 
+  aria-expanded="false" 
+  aria-controls="mobile-menu"
+  aria-haspopup="true"
+>
+  Menu
+</button>
+<nav id="mobile-menu" hidden>
+  ...
+</nav>
+
+```
+
