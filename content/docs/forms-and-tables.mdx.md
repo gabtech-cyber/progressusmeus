@@ -4,8 +4,6 @@ title: Tables, Forms & Interactive Tools
 description: Relational data grids, accessible user input validation, and native browser controls.
 ---
 
-import { Callout } from 'fumadocs-ui/components/callout';
-
 ## 1. Tabular Data Structures
 
 HTML tables organize relational, multi-dimensional datasets across labeled rows and columns. They should never be used for page layouts—only for real tabular data.
