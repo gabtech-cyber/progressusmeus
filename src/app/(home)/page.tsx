@@ -6,7 +6,7 @@ export default function HomePage() {
       {/* 1. HEADER */}
       <header className="mb-10 text-center">
         <h1 className="text-3xl font-bold tracking-tight text-white mb-2">
-          Computing Notes
+          My Computing Notes
         </h1>
         <p className="text-zinc-400 text-sm">
           My personal learning log from HTML basics to full-stack.
@@ -16,9 +16,9 @@ export default function HomePage() {
         <div className="mt-6">
           <Link
             href="/docs"
-            className="inline-block bg-blue text-white font-semibold text-sm px-5 py-2.5 rounded hover:bg-zinc-200 transition"
+            className="inline-block bg-red text-white font-semibold text-sm px-5 py-2.5 rounded hover:bg-blue-200 transition"
           >
-            Open Notes →
+            Open Notes
           </Link>
         </div>
       </header>

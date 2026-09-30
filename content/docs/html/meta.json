@@ -1,0 +1,12 @@
+{
+  "title": "Web Foundation - HTML",
+  "pages": [
+    "html-tags",
+    "html-attributes",
+    "sematic-html",
+    "forms-and-tables",
+    "accessibility",
+    "common-mistakes"
+  ]
+  
+}
