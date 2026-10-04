@@ -1,0 +1,143 @@
+---
+title: CSS Fundamentals & Connecting to HTML
+description: Start from scratch—learn how browsers load stylesheets, connect CSS to HTML, and reference the most common CSS properties and values.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+**CSS (Cascading Style Sheets)** is the language used to design and layout web pages. While HTML provides the structural skeleton, CSS acts as the skin and clothing—controlling colors, fonts, spacing, and multi-device layouts.
+
+---
+
+## 1. How CSS Connects to HTML
+
+There are three ways to write CSS, but only **External Stylesheets** are used in professional development.
+
+### A. External Stylesheet (The Professional Standard)
+You write your CSS in a separate file (e.g., `main.css`) and link it inside the `<head>` of your HTML document using the `<link>` tag.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Website</title>
+  <!-- Links the CSS file to the HTML document -->
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+  <h1>Hello World</h1>
+</body>
+</html>
+
+```
+
+### B. Internal CSS (Rarely Used)
+
+Placed inside a `<style>` tag directly in the HTML `<head>`. Useful only for single-page emails or quick testing.
+
+```html
+<head>
+  <style>
+    body { background-color: #f3f4f6; }
+  </style>
+</head>
+
+```
+
+### C. Inline CSS (Anti-Pattern / Avoid)
+
+Applied directly to an HTML element using the `style` attribute. It overrides everything else, but makes code impossible to maintain.
+
+```html
+<!-- ❌ Avoid this in production -->
+<p style="color: red; font-size: 16px;">Error message</p>
+
+```
+
+---
+
+## 2. Behind the Scenes: How the Browser Processes CSS
+
+When a browser loads a webpage, it follows a strict sequence before pixels appear on your screen:
+
+1. **Parsing HTML:** The browser reads HTML from top to bottom and builds the **DOM (Document Object Model)**—the tree structure of your elements.
+2. **Parsing CSS:** The browser reads your CSS files and builds the **CSSOM (CSS Object Model)**—the tree structure of all styling rules.
+3. **The Render Tree:** The browser combines the DOM and CSSOM to form the Render Tree, calculating exact sizes and positions.
+4. **Layout & Paint:** The browser calculates where everything sits (**Layout**) and draws the pixels onto the screen (**Paint**).
+
+---
+
+## 3. Core Syntax & Anatomy
+
+A CSS rule consists of three building blocks:
+
+```css
+selector {
+  property: value;
+}
+
+```
+
+* **Selector:** Targets *which* HTML element to style (e.g., `h1`, `.btn`, `#header`).
+* **Property:** *What* aspect of the element you want to change (e.g., `color`, `width`, `margin`).
+* **Value:** *How* you want to change it (e.g., `blue`, `100px`, `1.5rem`).
+
+---
+
+## 4. Quick-Reference Cheat Sheet: Most Used CSS Values & Attributes
+
+Here is a searchable lookup table of the properties you will use in 90% of your daily development:
+
+### Typography & Text
+
+| Property | Common Values | What it does |
+| --- | --- | --- |
+| `font-family` | `'Inter', sans-serif` | Sets the typeface. |
+| `font-size` | `1rem`, `16px`, `1.25rem` | Sets text size. |
+| `font-weight` | `400` (normal), `700` (bold) | Sets text thickness. |
+| `text-align` | `left`, `center`, `right` | Aligns text horizontally. |
+| `color` | `#3b82f6`, `rgb(...)`, `red` | Sets the text color. |
+
+### Box Model & Spacing
+
+| Property | Common Values | What it does |
+| --- | --- | --- |
+| `width` / `height` | `100%`, `500px`, `100vw` | Sets element dimensions. |
+| `padding` | `1rem`, `12px 24px` | Internal spacing (inside border). |
+| `margin` | `0 auto`, `1.5rem`, `10px` | External spacing (outside border). |
+| `border` | `1px solid #e5e7eb` | Adds a border line. |
+| `border-radius` | `0.375rem`, `9999px` (pill) | Rounds corners. |
+
+### Visuals & Backgrounds
+
+| Property | Common Values | What it does |
+| --- | --- | --- |
+| `background-color` | `#ffffff`, `transparent` | Sets background color. |
+| `box-shadow` | `0 4px 6px -1px rgba(0,0,0,0.1)` | Adds a drop shadow. |
+| `opacity` | `0` to `1` | Sets transparency. |
+
+---
+
+## 5. Layout & Display Essentials
+
+### The Display Property
+
+* `display: block` — Takes full width, forces a new line (`<div>`, `<p>`).
+* `display: inline` — Flows inline with text (`<span>`, `<a>`).
+* `display: flex` — Activates Flexbox for 1D alignments.
+* `display: grid` — Activates CSS Grid for 2D layouts.
+* `display: none` — Completely hides the element.
+
+### Flexbox Quick Setup
+
+```css
+.flex-row {
+  display: flex;
+  flex-direction: row;        /* Items flow left-to-right */
+  justify-content: space-between; /* Spacing across main axis */
+  align-items: center;        /* Centered cross-axis alignment */
+  gap: 1rem;                  /* Clean spacing between children */
+}
+
+```
