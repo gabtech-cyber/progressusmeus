@@ -2,7 +2,8 @@
   "title": "CSS",
   "pages": [
     "css-fundamentals",
-    "css-master-reference"
+    "css-master-reference",
+    "css-modules"
 
   ]
 }

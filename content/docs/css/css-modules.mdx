@@ -1,0 +1,292 @@
+---
+title: CSS Modules
+
+---
+
+## Module 1: Basic CSS & Syntax
+
+### What it covers:
+
+The fundamental anatomy of a CSS rule, how to select tags, and how to link stylesheets to HTML.
+
+### Example:
+
+```css
+/* Selector { property: value; } */
+h1 {
+  color: #1e293b;
+  font-family: system-ui, sans-serif;
+  font-size: 2.25rem;
+}
+
+```
+
+---
+
+## Module 2: Design Principles
+
+### What it covers:
+
+Visual hierarchy, whitespace (negative space), contrast, alignment, and consistency in web design.
+
+* **Whitespace:** Gives elements room to breathe, improving cognitive readability.
+* **Contrast:** Ensuring text color contrasts sharply against backgrounds for accessibility.
+
+---
+
+## Module 3: Absolute and Relative Units
+
+### What it covers:
+
+Understanding when to use fixed units vs. scalable units.
+
+| Unit Type | Name | Description & Use Case |
+| --- | --- | --- |
+| **`px`** | Pixels | Absolute unit. Good for fine borders (`1px solid #ccc`). |
+| **`rem`** | Root EM | Relative to root font size (`1rem` = root size). Best for layout padding, margins, and typography. |
+| **`em`** | Relative EM | Relative to parent element's font size. |
+| **`vw` / `vh**` | Viewport Width/Height | Percentage of the browser window's size (`100vw` = full width). |
+
+---
+
+## Module 4: Pseudo-Classes and Pseudo-Elements
+
+### What it covers:
+
+Styling elements based on user interaction or state, and targeting specific parts of elements.
+
+* **Pseudo-Classes (`:hover`, `:focus`, `:nth-child`)**:
+```css
+button:hover {
+  background-color: #2563eb;
+}
+tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+```
+
+
+* **Pseudo-Elements (`::before`, `::after`, `::placeholder`)**:
+```css
+input::placeholder {
+  color: #94a3b8;
+}
+
+```
+
+
+
+---
+
+## Module 5: Colors
+
+
+### What it covers:
+
+Representing color in CSS across different systems:
+
+* **HEX Codes:** `#3b82f6` (6-digit hexadecimal color representation).
+* **RGB / RGBA:** `rgb(59, 130, 246)` and `rgba(59, 130, 246, 0.5)` (includes alpha/transparency channel).
+* **HSL / HSLA:** Hue, Saturation, Lightness (`hsl(217, 91%, 60%)`).
+
+---
+
+## Module 6: Styling Forms
+
+
+### What it covers:
+
+Making inputs, textareas, labels, and buttons look modern and accessible.
+
+```css
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+```
+
+---
+
+## Module 7: The Box Model
+
+
+### What it covers:
+
+Content, Padding, Border, and Margin. Always include the global `border-box` reset:
+
+```css
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+```
+
+---
+
+## Module 8: Flexbox
+
+
+### What it covers:
+
+1-dimensional layouts (rows or columns).
+
+```css
+.flex-container {
+  display: flex;
+  justify-content: space-between; /* Horizontal alignment */
+  align-items: center;        /* Vertical alignment */
+  gap: 1rem;                  /* Spacing */
+}
+
+```
+
+---
+
+## Module 9: Typography
+
+
+### What it covers:
+
+Font stacks, line heights, letter spacing, and readability rules:
+
+```css
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  color: #0f172a;
+}
+
+```
+
+---
+
+## Module 10: Positioning
+
+
+### What it covers:
+
+Controlling exactly where elements sit in the document flow:
+
+* **`static`**: Default normal document flow.
+* **`relative`**: Positioned relative to its normal position.
+* **`absolute`**: Positioned relative to its nearest positioned ancestor.
+* **`fixed`**: Locked relative to the browser viewport (stays when scrolling).
+* **`sticky`**: Toggles between relative and fixed based on scroll position.
+
+---
+
+## Module 11: Attribute Selectors
+
+
+### What it covers:
+
+Targeting elements based on their HTML attributes.
+
+```css
+/* Targets links that open externally */
+a[target="_blank"] {
+  color: #0284c7;
+}
+
+/* Targets input fields with a specific type */
+input[type="email"] {
+  background-color: #fdfdfd;
+}
+
+```
+
+---
+
+## Module 12: Responsive Design
+
+
+### What it covers:
+
+Mobile-first media queries that adjust layouts across screen dimensions.
+
+```css
+/* Base mobile styles here */
+.container {
+  padding: 1rem;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+    max-width: 720px;
+  }
+}
+
+```
+
+---
+
+## Module 13: CSS Variables (Custom Properties)
+
+
+### What it covers:
+
+Reusable values defined at the root level for easy theming.
+
+```css
+:root {
+  --primary: #2563eb;
+  --bg-main: #ffffff;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--primary);
+}
+
+```
+
+---
+
+## Module 14: CSS Grid
+
+
+### What it covers:
+
+2-dimensional layouts handling rows and columns simultaneously.
+
+```css
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 1.5rem;
+}
+
+```
+
+---
+
+## Module 15: Animations & Transitions
+
+
+### What it covers:
+
+Smooth transitions and keyframe animations.
+
+```css
+.btn {
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+```
