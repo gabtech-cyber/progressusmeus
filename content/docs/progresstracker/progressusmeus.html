@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progressus Meus</title>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #3b82f6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .tracker-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+
+    .progress-bar-container {
+      background-color: var(--border);
+      border-radius: 9999px;
+      height: 8px;
+      width: 100%;
+      overflow: hidden;
+      margin: 1rem 0 1.5rem 0;
+    }
+
+    .progress-bar-fill {
+      background-color: var(--accent);
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      user-select: none;
+      transition: color 0.2s;
+    }
+
+    .task-item:hover {
+      color: var(--text-main);
+    }
+
+    .task-item input[type="checkbox"] {
+      accent-color: var(--accent);
+      width: 1.1rem;
+      height: 1.1rem;
+      cursor: pointer;
+    }
+
+    .task-item.completed {
+      text-decoration: line-through;
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tracker-card">
+    <h2>Progressus Meus</h2>
+    <div class="stats">
+      <span id="status-text">0 of 4 completed</span>
+      <span id="percentage-text">0%</span>
+    </div>
+    
+    <div class="progress-bar-container">
+      <div id="progress-fill" class="progress-bar-fill"></div>
+    </div>
+
+    <ul class="task-list">
+      <li class="task-item">
+        <input type="checkbox" data-task> HTML & Accessibility Foundations
+      </li>
+      <li class="task-item">
+        <input type="checkbox" data-task> Computer Hardware & Networking
+      </li>
+      <li class="task-item">
+        <input type="checkbox" data-task> Professional Dev Toolchain
+      </li>
+      <li class="task-item">
+        <input type="checkbox" data-task> CSS Masterclass & Layouts
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll('[data-task]');
+    const progressFill = document.getElementById('progress-fill');
+    const statusText = document.getElementById('status-text');
+    const percentageText = document.getElementById('percentage-text');
+
+    function updateProgress() {
+      const total = checkboxes.length;
+      const checked = document.querySelectorAll('[data-task]:checked').length;
+      const percentage = Math.round((checked / total) * 100);
+
+      progressFill.style.width = `${percentage}%`;
+      statusText.textContent = `${checked} of ${total} completed`;
+      percentageText.textContent = `${percentage}%`;
+
+      checkboxes.forEach(box => {
+        const li = box.parentElement;
+        if (box.checked) {
+          li.classList.add('completed');
+        } else {
+          li.classList.remove('completed');
+        }
+      });
+    }
+
+    checkboxes.forEach(box => {
+      box.addEventListener('change', updateProgress);
+    });
+
+    // Initial run
+    updateProgress();
+  </script>
+
+</body>
+</html>
